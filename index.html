@@ -2,61 +2,80 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ansh Soni | Space-Themed Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ansh Soni | Professional Dark‑Space Portfolio</title>
+
+    <!-- Font‑Awesome for icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Google Font – clean & modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+
     <style>
+        /* -------------------------------------------------------------
+           1️⃣  GLOBAL DARK‑THEME VARIABLES
+           ------------------------------------------------------------- */
         :root {
-            --dark-bg: #0a0a15;
-            --darker-bg: #050510;
-            --card-bg: rgba(30, 30, 45, 0.85);
-            --primary: #7e22ce;
-            --primary-light: #a855f7;
-            --text: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --accent: #00e5ff;
-            --star-color: #ffffff;
-            --nebula-1: #4a1c7a;
-            --nebula-2: #2d1e5f;
-            --planet-1: #2a5298;
-            --planet-2: #1e3c72;
-            --planet-3: #4a1c7a;
+            /* core background */
+            --bg-primary: #0c0c0c;          /* page background – true black */
+            --bg-secondary: #111111;        /* slightly lighter for header etc. */
+            --card-bg: #1a1a1a;             /* dark‑gray cards, 85 % opacity */
+
+            /* text */
+            --text-primary: #f0f0f0;        /* main readable colour */
+            --text-secondary: #b0b0b0;      /* secondary / muted text */
+
+            /* accent palette – professional but still space‑y */
+            --accent-primary: #00adb5;       /* teal – primary actions */
+            --accent-secondary: #ff9800;     /* amber – highlight / secondary accent */
+
+            /* decorative */
+            --star-color: #ffffff;          /* stars stay pure white */
+            --planet-1: #2b3e50;
+            --planet-2: #2c3e50;
+            --planet-3: #34495e;
         }
 
+        /* -------------------------------------------------------------
+           2️⃣  BASIC RESET & TYPOGRAPHY
+           ------------------------------------------------------------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--text);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* Space Background */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* -------------------------------------------------------------
+           3️⃣  SPACE BACKGROUND (stars, planets, galaxy, satellite)
+           ------------------------------------------------------------- */
         .space-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(ellipse at bottom, #0a0a15 0%, #000000 100%);
+            background: radial-gradient(ellipse at bottom, #0c0c0c 0%, #000000 100%);
         }
 
         .stars {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
         }
 
@@ -69,7 +88,6 @@
         }
 
         @keyframes twinkle {
-
             0%,
             100% {
                 opacity: 0.2;
@@ -80,7 +98,6 @@
             }
         }
 
-        /* Planets */
         .planet {
             position: absolute;
             border-radius: 50%;
@@ -91,31 +108,31 @@
         .planet-1 {
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle at 30% 30%, var(--planet-1), #1a1a2e 70%);
+            background: radial-gradient(circle at 30% 30%, var(--planet-1), #0c0c0c 70%);
             top: 10%;
             right: 10%;
             animation: float-planet-1 40s infinite linear;
-            box-shadow: 0 0 100px rgba(42, 82, 152, 0.3);
+            box-shadow: 0 0 80px rgba(43, 62, 80, 0.3);
         }
 
         .planet-2 {
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle at 40% 40%, var(--planet-2), #16213e 70%);
+            background: radial-gradient(circle at 40% 40%, var(--planet-2), #0c0c0c 70%);
             bottom: 15%;
             left: 15%;
             animation: float-planet-2 50s infinite linear reverse;
-            box-shadow: 0 0 80px rgba(30, 60, 114, 0.3);
+            box-shadow: 0 0 60px rgba(44, 62, 80, 0.3);
         }
 
         .planet-3 {
             width: 150px;
             height: 150px;
-            background: radial-gradient(circle at 50% 50%, var(--planet-3), #0f3460 70%);
+            background: radial-gradient(circle at 50% 50%, var(--planet-3), #0c0c0c 70%);
             top: 40%;
             left: 5%;
             animation: float-planet-3 60s infinite linear;
-            box-shadow: 0 0 60px rgba(74, 28, 122, 0.3);
+            box-shadow: 0 0 50px rgba(52, 73, 94, 0.3);
         }
 
         @keyframes float-planet-1 {
@@ -148,14 +165,15 @@
             }
         }
 
-        /* Galaxy */
         .galaxy {
             position: absolute;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(74, 28, 122, 0.2) 0%, transparent 70%);
-            filter: blur(40px);
-            opacity: 0.4;
+            background: radial-gradient(circle,
+                    rgba(74, 28, 122, 0.15) 0%,
+                    transparent 70%);
+            filter: blur(30px);
+            opacity: 0.3;
             top: 30%;
             left: 60%;
             animation: rotate-galaxy 120s infinite linear;
@@ -167,7 +185,7 @@
             }
 
             50% {
-                transform: rotate(180deg) scale(1.1);
+                transform: rotate(180deg) scale(1.05);
             }
 
             100% {
@@ -175,7 +193,6 @@
             }
         }
 
-        /* Shooting Stars */
         .shooting-star {
             position: absolute;
             width: 2px;
@@ -186,7 +203,6 @@
             opacity: 0;
         }
 
-        /* Satellite */
         .satellite {
             position: absolute;
             width: 40px;
@@ -204,7 +220,7 @@
             position: absolute;
             width: 5px;
             height: 5px;
-            background: var(--accent);
+            background: var(--accent-primary);
             border-radius: 50%;
             top: 50%;
             left: -10px;
@@ -229,15 +245,17 @@
             z-index: 1;
         }
 
-        /* Header & Navigation */
+        /* -------------------------------------------------------------
+           4️⃣  HEADER & NAVIGATION (high‑contrast, professional)
+           ------------------------------------------------------------- */
         header {
-            background-color: rgba(10, 10, 20, 0.7);
-            backdrop-filter: blur(15px);
+            background-color: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(12px);
             position: fixed;
-            width: 100%;
+            inset: 0 0 auto;
             z-index: 1000;
-            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         nav {
@@ -250,14 +268,13 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-light);
-            text-shadow: 0 0 15px rgba(168, 85, 247, 0.7);
-            letter-spacing: 1px;
+            color: var(--accent-primary);
+            letter-spacing: 0.5px;
         }
 
         .logo::after {
             content: '🚀';
-            margin-left: 10px;
+            margin-left: 0.6rem;
             font-size: 1.5rem;
         }
 
@@ -271,27 +288,24 @@
         }
 
         .nav-links a {
-            color: var(--text);
-            text-decoration: none;
+            color: var(--text-primary);
             font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
             padding: 5px 0;
+            position: relative;
+            transition: color 0.25s;
         }
 
         .nav-links a:hover {
-            color: var(--primary-light);
-            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+            color: var(--accent-primary);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
+            inset: auto auto 0 0;
             height: 2px;
-            background: linear-gradient(to right, var(--primary-light), var(--accent));
+            width: 0;
+            background: var(--accent-primary);
             transition: width 0.3s;
         }
 
@@ -299,124 +313,89 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* -------------------------------------------------------------
+           5️⃣  HERO SECTION
+           ------------------------------------------------------------- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 80px;               /* offset fixed header */
             position: relative;
             overflow: hidden;
         }
 
         .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
             max-width: 700px;
-            background: rgba(10, 10, 20, 0.4);
-            backdrop-filter: blur(10px);
+            background: rgba(17, 17, 17, 0.45);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
             padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-            animation: glow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
-            }
-
-            to {
-                text-shadow: 0 0 25px rgba(168, 85, 247, 0.8), 0 0 40px rgba(0, 229, 255, 0.6);
-            }
+            font-size: 3.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-primary);
         }
 
         .hero h2 {
-            font-size: 2rem;
+            font-size: 1.9rem;
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 1.4rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
         .btn {
             display: inline-block;
-            padding: 14px 35px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border-radius: 28px;
             font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
+            border: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s;
-            z-index: -1;
+            letter-spacing: 0.5px;
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 173, 181, 0.3);
         }
 
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        /* Sections */
+        /* -------------------------------------------------------------
+           6️⃣  SECTIONS (generic)
+           ------------------------------------------------------------- */
         section {
             padding: 100px 0;
             position: relative;
         }
 
         section h2 {
-            font-size: 2.8rem;
-            margin-bottom: 50px;
+            font-size: 2.6rem;
+            margin-bottom: 3rem;
             text-align: center;
             position: relative;
+            color: var(--text-primary);
         }
 
         section h2::before {
             content: '✦';
             position: absolute;
-            left: 50%;
             top: -30px;
+            left: 50%;
             transform: translateX(-50%);
             font-size: 2rem;
-            color: var(--accent);
+            color: var(--accent-primary);
         }
 
         section h2::after {
@@ -425,27 +404,29 @@
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             border-radius: 2px;
         }
 
-        /* Projects */
+        /* -------------------------------------------------------------
+           7️⃣  PROJECTS GRID
+           ------------------------------------------------------------- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
         }
 
         .project-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.4s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
             position: relative;
             overflow: hidden;
         }
@@ -453,19 +434,17 @@
         .project-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            inset: 0 auto 0 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.4s;
+            transition: transform 0.35s;
         }
 
         .project-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(168, 85, 247, 0.3);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
         }
 
         .project-card:hover::before {
@@ -473,79 +452,79 @@
         }
 
         .project-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            color: var(--primary-light);
+            font-size: 1.55rem;
+            margin-bottom: 0.9rem;
+            color: var(--accent-primary);
         }
 
         .project-date {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            font-size: 0.88rem;
+            margin-bottom: 0.9rem;
             display: flex;
             align-items: center;
         }
 
         .project-date::before {
             content: '📅';
-            margin-right: 8px;
+            margin-right: 0.6rem;
         }
 
         .project-card p {
-            margin-bottom: 25px;
+            margin-bottom: 1.4rem;
             line-height: 1.7;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 6px;
         }
 
         .tech-tag {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 5px 10px rgba(168, 85, 247, 0.2);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.81rem;
+            box-shadow: 0 4px 8px rgba(0, 173, 181, 0.2);
         }
 
-        /* Skills */
+        /* -------------------------------------------------------------
+           8️⃣  SKILLS SECTION
+           ------------------------------------------------------------- */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 32px;
         }
 
         .skill-category {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: transform 0.25s;
         }
 
         .skill-category:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
         }
 
         .skill-category h3 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--primary-light);
+            font-size: 1.55rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-primary);
             display: flex;
             align-items: center;
         }
 
         .skill-category h3::before {
             content: '⚡';
-            margin-right: 10px;
-            font-size: 1.4rem;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
         }
 
         .skill-list {
@@ -553,54 +532,53 @@
         }
 
         .skill-list li {
-            margin-bottom: 15px;
+            margin-bottom: 0.9rem;
             display: flex;
             align-items: center;
-            transition: transform 0.3s;
-            padding: 8px 0;
+            transition: transform 0.2s;
+            padding: 6px 0;
         }
 
         .skill-list li:hover {
-            transform: translateX(10px);
+            transform: translateX(8px);
         }
 
         .skill-list li::before {
             content: '▸';
-            color: var(--accent);
-            margin-right: 15px;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+            color: var(--accent-primary);
+            margin-right: 0.8rem;
+            font-size: 1rem;
         }
 
-        /* Education & Experience */
+        /* -------------------------------------------------------------
+           9️⃣  TIMELINE (Education / Experience)
+           ------------------------------------------------------------- */
         .timeline {
             position: relative;
-            max-width: 900px;
+            max-width: 880px;
             margin: 0 auto;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
-            width: 6px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
+            inset: 0 auto 0 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            margin-left: -2px;
+            border-radius: 2px;
         }
 
         .timeline-item {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 32px;
             position: relative;
             width: 45%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .timeline-item:nth-child(odd) {
@@ -613,45 +591,47 @@
 
         .timeline-date {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
         }
 
         .timeline-date::before {
             content: '🕒';
-            margin-right: 8px;
+            margin-right: 0.5rem;
         }
 
-        /* Contact */
+        /* -------------------------------------------------------------
+           10️⃣  CONTACT SECTION
+           ------------------------------------------------------------- */
         .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
+            gap: 32px;
         }
 
         .contact-info {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .contact-info h3 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--primary-light);
+            font-size: 1.55rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-primary);
             display: flex;
             align-items: center;
         }
 
         .contact-info h3::before {
             content: '📞';
-            margin-right: 10px;
-            font-size: 1.4rem;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
         }
 
         .contact-details {
@@ -659,10 +639,10 @@
         }
 
         .contact-details li {
-            margin-bottom: 20px;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -670,73 +650,74 @@
             border-bottom: none;
         }
 
-        .contact-details li i {
-            color: var(--accent);
-            margin-right: 20px;
-            font-size: 1.4rem;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
-            width: 30px;
-            text-align: center;
+        .contact-details i {
+            color: var(--accent-primary);
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+            width: 28px;
         }
 
         .social-links {
             display: flex;
-            margin-top: 30px;
+            margin-top: 1.6rem;
         }
 
         .social-links a {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            margin-right: 20px;
-            transition: all 0.3s;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            margin-right: 1rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+            font-size: 1.16rem;
         }
 
         .social-links a:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+            transform: translateY(-6px) scale(1.07);
+            box-shadow: 0 12px 24px rgba(0, 173, 181, 0.3);
         }
 
-        /* Footer */
+        /* -------------------------------------------------------------
+           11️⃣  FOOTER
+           ------------------------------------------------------------- */
         footer {
-            background-color: rgba(5, 5, 15, 0.8);
-            backdrop-filter: blur(15px);
-            padding: 40px 0;
+            background-color: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 36px 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         footer p {
-            font-size: 1rem;
-            opacity: 0.8;
+            font-size: 0.96rem;
+            opacity: 0.85;
         }
 
-        /* Responsive Design */
+        /* -------------------------------------------------------------
+           12️⃣  RESPONSIVE
+           ------------------------------------------------------------- */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.6rem;
             }
 
             .hero h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .timeline::after {
-                left: 31px;
+                left: 30px;
             }
 
             .timeline-item {
                 width: 100%;
-                padding-left: 80px;
-                padding-right: 25px;
                 left: 0 !important;
+                padding-left: 70px;
+                padding-right: 30px;
             }
 
             .planet-1,
@@ -756,7 +737,7 @@
             }
 
             .hero h2 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             section h2 {
@@ -771,7 +752,10 @@
 </head>
 
 <body>
-    <!-- Space Background -->
+    <!-- ---------------------------------------------------------
+         Space background (stars / planets / galaxy / satellite /
+         shooting stars)
+    ---------------------------------------------------------- -->
     <div class="space-background">
         <div class="stars" id="stars"></div>
         <div class="planet planet-1"></div>
@@ -782,7 +766,9 @@
         <div id="shooting-stars"></div>
     </div>
 
-    <!-- Header & Navigation -->
+    <!-- ---------------------------------------------------------
+         Header & Navigation
+    ---------------------------------------------------------- -->
     <header>
         <div class="container">
             <nav>
@@ -798,71 +784,84 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ---------------------------------------------------------
+         HERO SECTION
+    ---------------------------------------------------------- -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                
-                <h2>Full-Stack Developer & AI Enthusiast</h2>
-                <p>Final-year B.Tech student specializing in Full-Stack Development and Python, with hands-on experience
-                    in web application development and a passion for Artificial Intelligence and Machine Learning.
-                    Exploring the frontiers of technology like exploring the cosmos.</p>
+                <h1>Full‑Stack Developer &amp; AI Enthusiast</h1>
+                <h2>Exploring frontiers of tech – like exploring the cosmos.</h2>
+                <p>
+                    Final‑year B.Tech student specializing in Full‑Stack Development and Python,
+                    with hands‑on web‑app experience and a passion for Artificial Intelligence and
+                    Machine Learning.
+                </p>
                 <a href="#projects" class="btn">Explore My Projects</a>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ---------------------------------------------------------
+         PROJECTS SECTION
+    ---------------------------------------------------------- -->
     <section id="projects">
         <div class="container">
             <h2>Space Missions</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>Gen AI Lab (Movie Metadata Extractor)</h3>
-                    <div class="project-date">Feb 2026</div>
+                    <div class="project-date">Feb 2026</div>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Hugging Face</span>
+                        <span class="tech-tag">Hugging Face</span>
                         <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Langchain</span>
+                        <span class="tech-tag">LangChain</span>
                         <span class="tech-tag">UV</span>
                     </div>
-                    <p>Engineered a lab for testing state-of-the-art AI models including Llama 3, Mistral, Gemini
-                        (Groq), OpenAI, and Stable Diffusion. Developed an AI system to process unstructured movie
-                        descriptions and extract metadata.</p>
+                    <p>
+                        Engineered a lab for testing state‑of‑the‑art AI models (Llama 3, Mistral, Gemini,
+                        OpenAI, Stable Diffusion). Built a pipeline that extracts structured metadata from
+                        unstructured movie descriptions.
+                    </p>
                 </div>
 
                 <div class="project-card">
                     <h3>Discord AI Chat Bot</h3>
-                    <div class="project-date">May 2025</div>
+                    <div class="project-date">May 2025</div>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">AI Integration</span>
                         <span class="tech-tag">Async Programming</span>
                     </div>
-                    <p>Integrated Google Gemini AI to generate intelligent, human-like replies for Discord DMs and
-                        server channels. Utilized asynchronous logic to manage multiple concurrent chat streams and API
-                        calls efficiently.</p>
+                    <p>
+                        Integrated Google Gemini to generate human‑like replies in Discord DMs &amp;
+                        server channels. Used asynchronous logic to keep many concurrent chat streams responsive.
+                    </p>
                 </div>
 
                 <div class="project-card">
-                    <h3>AI-Generalist</h3>
-                    <div class="project-date">Mar 2026</div>
+                    <h3>AI‑Generalist</h3>
+                    <div class="project-date">Mar 2026</div>
                     <div class="tech-stack">
-                        <span class="tech-tag">Mistral AI</span>
-                        <span class="tech-tag">Anthropic Claude</span>
+                        <span class="tech-tag">Mistral AI</span>
+                        <span class="tech-tag">Anthropic Claude</span>
                         <span class="tech-tag">LangChain</span>
                         <span class="tech-tag">PyMuPDF</span>
                     </div>
-                    <p>Integrated Mistral AI and Anthropic Claude via LangChain to orchestrate multi-model inference and
-                        logical reasoning. Implemented multimodal extraction with PyMuPDF and Unstructured.</p>
+                    <p>
+                        Orchestrated multi‑model inference with LangChain, enabling logical reasoning across
+                        heterogeneous data. Implemented multimodal extraction with PyMuPDF &amp; Unstructured.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ---------------------------------------------------------
+         SKILLS SECTION
+    ---------------------------------------------------------- -->
     <section id="skills">
         <div class="container">
             <h2>Technical Arsenal</h2>
@@ -879,10 +878,10 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Frameworks & Libraries</h3>
+                    <h3>Frameworks &amp; Libraries</h3>
                     <ul class="skill-list">
                         <li>React.js</li>
-                        <li>Tailwind CSS</li>
+                        <li>Tailwind CSS</li>
                         <li>NumPy</li>
                         <li>Pandas</li>
                         <li>PyTorch</li>
@@ -892,8 +891,8 @@
                 <div class="skill-category">
                     <h3>Developer Tools</h3>
                     <ul class="skill-list">
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
+                        <li>Git &amp; GitHub</li>
+                        <li>VS Code</li>
                         <li>Postman</li>
                         <li>UV</li>
                         <li>Docker</li>
@@ -903,36 +902,38 @@
         </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- ---------------------------------------------------------
+         EDUCATION / EXPERIENCE TIMELINE
+    ---------------------------------------------------------- -->
     <section id="education">
         <div class="container">
             <h2>Mission Timeline</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <h3>Bachelor of Technology (B.Tech)</h3>
-                    <div class="timeline-date">Jun 2022 – Jun 2026</div>
-                    <p>Computer Science & IT | CGPA: 7.0</p>
-                    <p>Jawaharlal Nehru College Of Technology (JNCT), Rewa | RGPV Affiliated</p>
+                    <div class="timeline-date">Jun 2022 – Jun 2026</div>
+                    <p>Computer Science &amp; IT | CGPA 7.0</p>
+                    <p>Jawaharlal Nehru College of Technology (JNCT), Rewa | RGPV Affiliated</p>
                 </div>
 
                 <div class="timeline-item">
                     <h3>CODSOFT Virtual Internship</h3>
                     <div class="timeline-date">2024</div>
-                    <p>Successfully completed a program in Responsive Web Development, enhancing skills in modern web
-                        technologies and best practices.</p>
+                    <p>Completed a responsive web‑development program, sharpening modern front‑end skills.</p>
                 </div>
 
                 <div class="timeline-item">
                     <h3>Project Lead (JNCT)</h3>
-                    <div class="timeline-date">2023-2024</div>
-                    <p>Directed a team of 3 for college technical assignments and managed GitHub code reviews, ensuring
-                        high-quality project delivery.</p>
+                    <div class="timeline-date">2023 – 2024</div>
+                    <p>Led a team of three on college technical assignments, managing GitHub code‑review workflow.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ---------------------------------------------------------
+         CONTACT SECTION
+    ---------------------------------------------------------- -->
     <section id="contact">
         <div class="container">
             <h2>Mission Control</h2>
@@ -940,86 +941,78 @@
                 <div class="contact-info">
                     <h3>Contact Details</h3>
                     <ul class="contact-details">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Rewa, Madhya Pradesh, India</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+91 62640 55720</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>anshsoni310@gmail.com</span>
-                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Rewa, Madhya Pradesh, India</span></li>
+                        <li><i class="fas fa-phone"></i><span>+91 62640 55720</span></li>
+                        <li><i class="fas fa-envelope"></i><span>anshsoni310@gmail.com</span></li>
                     </ul>
 
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/ansh-soni-4247993a4/" target="_blank"
-                            rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                            rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
 
-                        <a href="https://github.com/Ansh7473" target="_blank" rel="noopener noreferrer"
-                            aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
+                        <a href="https://github.com/Ansh7473" target="_blank"
+                            rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
 
-                        <!-- Replace the href with the correct path to your PDF resume -->
-                        <a href="https://github.com/Ansh7473/resume" target="_blank" rel="noopener noreferrer"
-                            aria-label="Download Resume (PDF)">
-                            <i class="fas fa-file-pdf"></i>
-                        </a>
+                        <!-- replace the href with the proper PDF link if needed -->
+                        <a href="https://github.com/Ansh7473/resume" target="_blank"
+                            rel="noopener noreferrer" aria-label="Resume (PDF)"><i class="fas fa-file-pdf"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ---------------------------------------------------------
+         FOOTER
+    ---------------------------------------------------------- -->
     <footer>
         <div class="container">
             <p>&copy; 2023 Ansh Soni. All Rights Reserved. | Exploring the Digital Universe</p>
         </div>
     </footer>
 
+    <!-- ---------------------------------------------------------
+         JAVASCRIPT – unchanged (stars / shooting‑stars / parallax / smooth scroll)
+    ---------------------------------------------------------- -->
     <script>
-        // Create stars for the background
+        // ---------------------------------------------------------
+        // 1️⃣  Create background stars
+        // ---------------------------------------------------------
         function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const starsCount = 300;
+            const container = document.getElementById('stars');
+            const total = 300;
 
-            for (let i = 0; i < starsCount; i++) {
+            for (let i = 0; i < total; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
 
-                // Random properties for each star
                 const size = Math.random() * 3 + 1;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
                 const delay = Math.random() * 8;
                 const duration = 3 + Math.random() * 5;
-                const brightness = Math.random() * 0.8 + 0.2;
+                const opacity = Math.random() * 0.8 + 0.2;
 
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
-                star.style.left = `${posX}%`;
-                star.style.top = `${posY}%`;
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
                 star.style.animationDelay = `${delay}s`;
                 star.style.animationDuration = `${duration}s`;
-                star.style.opacity = brightness;
+                star.style.opacity = opacity;
 
-                starsContainer.appendChild(star);
+                container.appendChild(star);
             }
         }
 
-        // Create shooting stars
+        // ---------------------------------------------------------
+        // 2️⃣  Shooting‑star generator
+        // ---------------------------------------------------------
         function createShootingStars() {
             const container = document.getElementById('shooting-stars');
-            const starCount = 5;
+            const count = 5;
 
-            for (let i = 0; i < starCount; i++) {
+            for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.classList.add('shooting-star');
 
@@ -1036,65 +1029,65 @@
                 star.style.width = `${length}px`;
                 star.style.animation = `shoot ${duration}s ${delay}s infinite`;
 
-                // Add keyframes dynamically
+                // inject a unique keyframe for this particular star
                 const style = document.createElement('style');
                 style.textContent = `
                     @keyframes shoot {
-                        0% { transform: rotate(${angle}deg) translateX(0); opacity: 0; }
-                        10% { opacity: 1; }
-                        90% { opacity: 1; }
+                        0%   { transform: rotate(${angle}deg) translateX(0); opacity: 0; }
+                        10%  { opacity: 1; }
+                        90%  { opacity: 1; }
                         100% { transform: rotate(${angle}deg) translateX(${length}px); opacity: 0; }
                     }
                 `;
                 document.head.appendChild(style);
-
                 container.appendChild(star);
             }
         }
 
-        // Mouse move parallax effect
+        // ---------------------------------------------------------
+        // 3️⃣  Parallax / Mouse‑move effect (planets + galaxy)
+        // ---------------------------------------------------------
         function handleMouseMove(e) {
             const moveX = (e.clientX - window.innerWidth / 2) / 50;
             const moveY = (e.clientY - window.innerHeight / 2) / 50;
 
-            // Move planets
             document.querySelector('.planet-1').style.transform = `translate(${moveX * 0.7}px, ${moveY * 0.7}px) rotate(${moveX * 0.5}deg)`;
             document.querySelector('.planet-2').style.transform = `translate(${-moveX * 0.5}px, ${-moveY * 0.5}px) rotate(${-moveX * 0.3}deg)`;
             document.querySelector('.planet-3').style.transform = `translate(${moveX * 0.3}px, ${moveY * 0.3}px) rotate(${moveX * 0.2}deg)`;
-
-            // Move galaxy
             document.querySelector('.galaxy').style.transform = `translate(${-moveX * 0.4}px, ${-moveY * 0.4}px) rotate(${moveX * 0.1}deg)`;
 
-            // Move stars slightly
-            const stars = document.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                const speed = 0.5 + (index % 3) * 0.3;
+            // slight drift for the tiny stars – adds depth without being distracting
+            document.querySelectorAll('.star').forEach((star, idx) => {
+                const speed = 0.5 + (idx % 3) * 0.3;
                 star.style.transform = `translate(${moveX * speed * 0.1}px, ${moveY * speed * 0.1}px)`;
             });
         }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // ---------------------------------------------------------
+        // 4️⃣  Smooth scrolling for internal links
+        // ---------------------------------------------------------
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
                 e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
-        // Initialize effects
+        // ---------------------------------------------------------
+        // 5️⃣  Initialise everything once the DOM is ready
+        // ---------------------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
             createShootingStars();
             document.addEventListener('mousemove', handleMouseMove);
 
-            // Add some random shooting stars periodically
+            // renew shooting stars every few seconds (so they appear continuously)
             setInterval(() => {
                 createShootingStars();
             }, 5000);
