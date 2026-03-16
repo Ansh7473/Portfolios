@@ -20,20 +20,20 @@
            ------------------------------------------------------------- */
         :root {
             /* core background */
-            --bg-primary: #0c0c0c;          /* page background – true black */
-            --bg-secondary: #111111;        /* slightly lighter for header etc. */
-            --card-bg: #1a1a1a;             /* dark‑gray cards, 85 % opacity */
+            --bg-primary: #0c0c0c;
+            --bg-secondary: #111111;
+            --card-bg: #1a1a1a;
 
             /* text */
-            --text-primary: #f0f0f0;        /* main readable colour */
-            --text-secondary: #b0b0b0;      /* secondary / muted text */
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
 
-            /* accent palette – professional but still space‑y */
-            --accent-primary: #00adb5;       /* teal – primary actions */
-            --accent-secondary: #ff9800;     /* amber – highlight / secondary accent */
+            /* accent palette */
+            --accent-primary: #00adb5;
+            --accent-secondary: #ff9800;
 
             /* decorative */
-            --star-color: #ffffff;          /* stars stay pure white */
+            --star-color: #ffffff;
             --planet-1: #2b3e50;
             --planet-2: #2c3e50;
             --planet-3: #34495e;
@@ -320,7 +320,8 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;               /* offset fixed header */
+            padding-top: 80px;
+            /* offset fixed header */
             position: relative;
             overflow: hidden;
         }
@@ -491,7 +492,17 @@
         }
 
         /* -------------------------------------------------------------
-           8️⃣  SKILLS SECTION
+           8️⃣  NEW: PROJECT LINKS PLACEHOLDER (inside cards or separate)
+           ------------------------------------------------------------- */
+        .project-links {
+            margin-top: 1.2rem;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* -------------------------------------------------------------
+           9️⃣  SKILLS SECTION
            ------------------------------------------------------------- */
         .skills-container {
             display: grid;
@@ -551,7 +562,7 @@
         }
 
         /* -------------------------------------------------------------
-           9️⃣  TIMELINE (Education / Experience)
+           🔟  TIMELINE (Education / Experience)
            ------------------------------------------------------------- */
         .timeline {
             position: relative;
@@ -603,7 +614,7 @@
         }
 
         /* -------------------------------------------------------------
-           10️⃣  CONTACT SECTION
+           1️⃣1️⃣  CONTACT SECTION
            ------------------------------------------------------------- */
         .contact-container {
             display: grid;
@@ -682,7 +693,7 @@
         }
 
         /* -------------------------------------------------------------
-           11️⃣  FOOTER
+           1️⃣2️⃣  FOOTER
            ------------------------------------------------------------- */
         footer {
             background-color: rgba(5, 5, 5, 0.85);
@@ -698,7 +709,7 @@
         }
 
         /* -------------------------------------------------------------
-           12️⃣  RESPONSIVE
+           1️⃣3️⃣  RESPONSIVE
            ------------------------------------------------------------- */
         @media (max-width: 992px) {
             .hero h1 {
@@ -772,13 +783,13 @@
     <header>
         <div class="container">
             <nav>
-                
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#links">Links</a></li>
                 </ul>
             </nav>
         </div>
@@ -809,24 +820,29 @@
         <div class="container">
             <h2>Space Missions</h2>
             <div class="projects-grid">
+                <!-- ====================== NEW FIRST PROJECT CARD ====================== -->
                 <div class="project-card">
-                    <h3>Gen AI Lab (Movie Metadata Extractor)</h3>
+                    <h3>Trading‑Bot‑on‑Binance (Futures Trade)</h3>
                     <div class="project-date">Feb 2026</div>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Hugging Face</span>
                         <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">UV</span>
+                        <span class="tech-tag">python-binance</span>
                     </div>
                     <p>
-                        Engineered a lab for testing state‑of‑the‑art AI models (Llama 3, Mistral, Gemini,
-                        OpenAI, Stable Diffusion). Built a pipeline that extracts structured metadata from
-                        unstructured movie descriptions.
+                        Built a professional‑grade trading dashboard using Python and Streamlit for real‑time market data visualization and order execution.
+                        Integrated RESTful APIs to manage complex financial operations including margin tracking, position sizing, and order history.
+                        Reduced potential execution errors by implementing strict server‑side validation and detailed logging using Python’s logging library.
                     </p>
+                    <div class="project-links">
+                        <!-- Replace # with your live‑demo URL when ready -->
+                        <a href="https://trading-bot-on-binance.up.railway.app/" class="btn">Live Demo</a>
+                        <!-- Replace with actual GitHub repo URL -->
+                        <a href="https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet" class="btn">GitHub Repo</a>
+                    </div>
                 </div>
 
+                <!-- ====================== ORIGINAL SECOND PROJECT ====================== -->
                 <div class="project-card">
                     <h3>Discord AI Chat Bot</h3>
                     <div class="project-date">May 2025</div>
@@ -839,8 +855,13 @@
                         Integrated Google Gemini to generate human‑like replies in Discord DMs &amp;
                         server channels. Used asynchronous logic to keep many concurrent chat streams responsive.
                     </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Ansh7473/discord-ai-integrated-chat" class="btn">Live Demo</a>
+                        <a href="https://github.com/Ansh7473/discord-ai-integrated-chat" class="btn">GitHub Repo</a>
+                    </div>
                 </div>
 
+                <!-- ====================== ORIGINAL THIRD PROJECT ====================== -->
                 <div class="project-card">
                     <h3>AI‑Generalist</h3>
                     <div class="project-date">Mar 2026</div>
@@ -854,6 +875,10 @@
                         Orchestrated multi‑model inference with LangChain, enabling logical reasoning across
                         heterogeneous data. Implemented multimodal extraction with PyMuPDF &amp; Unstructured.
                     </p>
+                    <div class="project-links">
+                        <a href="https://ai-generalist.streamlit.app/" class="btn">Live Demo</a>
+                        <a href="https://github.com/Ansh7473/Ai-Generalist" class="btn">GitHub Repo</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -953,7 +978,6 @@
                         <a href="https://github.com/Ansh7473" target="_blank"
                             rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
 
-                        <!-- replace the href with the proper PDF link if needed -->
                         <a href="https://github.com/Ansh7473/resume" target="_blank"
                             rel="noopener noreferrer" aria-label="Resume (PDF)"><i class="fas fa-file-pdf"></i></a>
                     </div>
