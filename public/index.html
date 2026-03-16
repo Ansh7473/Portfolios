@@ -1,0 +1,1609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ansh Soni | Professional Portfolio</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-primary: #0c0c0c;
+            --bg-secondary: #111111;
+            --card-bg: #1a1a1a;
+            --header-bg: rgba(17, 17, 17, 0.85);
+            --footer-bg: rgba(5, 5, 5, 0.85);
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --accent-primary: #00adb5;
+            --accent-secondary: #ff9800;
+            --star-color: #ffffff;
+            --planet-1: #2b3e50;
+            --planet-2: #2c3e50;
+            --planet-3: #34495e;
+            --border-color: rgba(255, 255, 255, 0.07);
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            --card-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.45);
+            --header-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+            --space-gradient: radial-gradient(ellipse at bottom, #0c0c0c 0%, #000000 100%);
+            --galaxy-color: rgba(74, 28, 122, 0.15);
+            --theme-transition: 0.6s ease;
+            --chat-bg: #161616;
+            --chat-header-bg: #1e1e1e;
+            --chat-input-bg: #222222;
+            --chat-user-bubble: #007a82;
+            --chat-ai-bubble: #252525;
+            --chat-scrollbar: #333;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f2eb;
+            --bg-secondary: #faf8f4;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.92);
+            --footer-bg: rgba(245, 242, 235, 0.95);
+            --text-primary: #1a1a1a;
+            --text-secondary: #5a5a5a;
+            --accent-primary: #008c94;
+            --accent-secondary: #e68900;
+            --star-color: transparent;
+            --planet-1: #c8d6e5;
+            --planet-2: #b8c6d6;
+            --planet-3: #a9b9ca;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --card-shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.12);
+            --header-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            --space-gradient: linear-gradient(180deg, #e8e4dc 0%, #f5f2eb 50%, #faf8f4 100%);
+            --galaxy-color: rgba(255, 200, 120, 0.08);
+            --chat-bg: #ffffff;
+            --chat-header-bg: #f0ece4;
+            --chat-input-bg: #f5f2eb;
+            --chat-user-bubble: #008c94;
+            --chat-ai-bubble: #ece8e0;
+            --chat-scrollbar: #ccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: background-color var(--theme-transition), color var(--theme-transition);
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .space-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--space-gradient);
+            transition: background var(--theme-transition);
+        }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            transition: opacity var(--theme-transition);
+        }
+
+        [data-theme="light"] .stars { opacity: 0; }
+
+        .star {
+            position: absolute;
+            background-color: var(--star-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 8s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.1);
+            transition: background var(--theme-transition), box-shadow var(--theme-transition);
+        }
+
+        .planet-1 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle at 30% 30%, var(--planet-1), var(--bg-primary) 70%);
+            top: 10%; right: 10%;
+            animation: float-planet-1 40s infinite linear;
+            box-shadow: 0 0 80px rgba(43, 62, 80, 0.3);
+        }
+
+        .planet-2 {
+            width: 200px; height: 200px;
+            background: radial-gradient(circle at 40% 40%, var(--planet-2), var(--bg-primary) 70%);
+            bottom: 15%; left: 15%;
+            animation: float-planet-2 50s infinite linear reverse;
+            box-shadow: 0 0 60px rgba(44, 62, 80, 0.3);
+        }
+
+        .planet-3 {
+            width: 150px; height: 150px;
+            background: radial-gradient(circle at 50% 50%, var(--planet-3), var(--bg-primary) 70%);
+            top: 40%; left: 5%;
+            animation: float-planet-3 60s infinite linear;
+            box-shadow: 0 0 50px rgba(52, 73, 94, 0.3);
+        }
+
+        @keyframes float-planet-1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(20px, 30px) rotate(360deg); }
+        }
+
+        @keyframes float-planet-2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, 20px) rotate(-360deg); }
+        }
+
+        @keyframes float-planet-3 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(15px, -15px) rotate(180deg); }
+        }
+
+        .galaxy {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--galaxy-color) 0%, transparent 70%);
+            filter: blur(30px);
+            opacity: 0.3;
+            top: 30%; left: 60%;
+            animation: rotate-galaxy 120s infinite linear;
+            transition: background var(--theme-transition);
+        }
+
+        @keyframes rotate-galaxy {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px white;
+            opacity: 0;
+        }
+
+        [data-theme="light"] .shooting-star { opacity: 0 !important; }
+
+        .satellite {
+            position: absolute;
+            width: 40px; height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 2px;
+            top: 25%; left: 20%;
+            animation: orbit-satellite 20s infinite linear;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: background var(--theme-transition);
+        }
+
+        [data-theme="light"] .satellite {
+            background: rgba(0, 140, 148, 0.6);
+        }
+
+        .satellite::before {
+            content: '';
+            position: absolute;
+            width: 5px; height: 5px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            top: 50%; left: -10px;
+            transform: translateY(-50%);
+        }
+
+        @keyframes orbit-satellite {
+            0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s, background var(--theme-transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.12);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .theme-toggle .fa-moon { display: none; }
+        [data-theme="light"] .theme-toggle .fa-moon { display: block; }
+        [data-theme="light"] .theme-toggle .fa-sun { display: none; }
+
+        .mode-badge {
+            position: fixed;
+            top: 90px; right: 24px;
+            z-index: 9998;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--card-shadow);
+            transition: background var(--theme-transition), color var(--theme-transition);
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .mode-badge i { color: var(--accent-primary); }
+
+        header {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 1000;
+            box-shadow: var(--header-shadow);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--theme-transition), border-color var(--theme-transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            letter-spacing: 0.5px;
+            transition: color var(--theme-transition);
+        }
+
+        .logo::after { content: '🚀'; margin-left: 0.6rem; font-size: 1.5rem; }
+
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 30px; }
+
+        .nav-links a {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: var(--accent-primary); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            inset: auto auto 0 0;
+            height: 2px; width: 0;
+            background: var(--accent-primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transition: background var(--theme-transition), border-color var(--theme-transition);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-primary);
+            transition: color var(--theme-transition);
+        }
+
+        .hero h2 {
+            font-size: 1.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.4rem;
+            transition: color var(--theme-transition);
+        }
+
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.7; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border-radius: 28px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 173, 181, 0.3);
+        }
+
+        section { padding: 100px 0; position: relative; }
+
+        section h2 {
+            font-size: 2.6rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            color: var(--text-primary);
+            transition: color var(--theme-transition);
+        }
+
+        section h2::before {
+            content: '✦';
+            position: absolute;
+            top: -30px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--accent-primary);
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; left: 50%;
+            transform: translateX(-50%);
+            width: 120px; height: 3px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            transition: transform 0.3s, box-shadow 0.3s, background var(--theme-transition);
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .project-card:hover::before { transform: scaleX(1); }
+
+        .project-card h3 {
+            font-size: 1.55rem;
+            margin-bottom: 0.9rem;
+            color: var(--accent-primary);
+            transition: color var(--theme-transition);
+        }
+
+        .project-date {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: color var(--theme-transition);
+        }
+
+        .project-date::before { content: '📅'; margin-right: 0.6rem; }
+        .project-card p { margin-bottom: 1.4rem; line-height: 1.7; }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        .tech-tag {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.81rem;
+            box-shadow: 0 4px 8px rgba(0, 173, 181, 0.2);
+        }
+
+        .project-links {
+            margin-top: 1.2rem;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 32px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            transition: transform 0.25s, background var(--theme-transition);
+        }
+
+        .skill-category:hover { transform: translateY(-8px); }
+
+        .skill-category h3 {
+            font-size: 1.55rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            transition: color var(--theme-transition);
+        }
+
+        .skill-category h3::before { content: '⚡'; margin-right: 0.8rem; font-size: 1.2rem; }
+        .skill-list { list-style: none; }
+
+        .skill-list li {
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+            padding: 6px 0;
+        }
+
+        .skill-list li:hover { transform: translateX(8px); }
+
+        .skill-list li::before {
+            content: '▸';
+            color: var(--accent-primary);
+            margin-right: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 32px;
+            position: relative;
+            width: 45%;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            transition: background var(--theme-transition);
+        }
+
+        .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-item:nth-child(even) { left: 55%; }
+
+        .timeline-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            transition: color var(--theme-transition);
+        }
+
+        .timeline-date::before { content: '🕒'; margin-right: 0.5rem; }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            transition: background var(--theme-transition);
+        }
+
+        .contact-info h3 {
+            font-size: 1.55rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            transition: color var(--theme-transition);
+        }
+
+        .contact-info h3::before { content: '📞'; margin-right: 0.8rem; font-size: 1.2rem; }
+        .contact-details { list-style: none; }
+
+        .contact-details li {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color var(--theme-transition);
+        }
+
+        .contact-details li:last-child { border-bottom: none; }
+
+        .contact-details i {
+            color: var(--accent-primary);
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+            width: 28px;
+        }
+
+        .social-links { display: flex; margin-top: 1.6rem; }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            margin-right: 1rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+            font-size: 1.16rem;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-6px) scale(1.07);
+            box-shadow: 0 12px 24px rgba(0, 173, 181, 0.3);
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            backdrop-filter: blur(12px);
+            padding: 36px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            transition: background-color var(--theme-transition), border-color var(--theme-transition);
+        }
+
+        footer p {
+            font-size: 0.96rem;
+            opacity: 0.85;
+        }
+
+        /* ── AI CHAT WIDGET ── */
+        .ai-chat-trigger {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-primary);
+            background: var(--card-bg);
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 173, 181, 0.25);
+            transition: transform 0.3s, box-shadow 0.3s, background var(--theme-transition), border-color var(--theme-transition), color var(--theme-transition);
+            animation: ai-pulse 2.5s ease-in-out infinite;
+        }
+
+        .ai-chat-trigger:hover {
+            transform: scale(1.12);
+            box-shadow: 0 6px 28px rgba(0, 173, 181, 0.4);
+        }
+
+        .ai-chat-trigger.hidden {
+            transform: scale(0);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes ai-pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0, 173, 181, 0.25); }
+            50% { box-shadow: 0 4px 28px rgba(0, 173, 181, 0.55); }
+        }
+
+        .ai-chat-trigger .notif-dot {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-secondary);
+            border-radius: 50%;
+            border: 2px solid var(--card-bg);
+            animation: notif-blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes notif-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .ai-chat-window {
+            position: fixed;
+            bottom: 100px;
+            left: 28px;
+            z-index: 9998;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            height: 560px;
+            max-height: calc(100vh - 160px);
+            background: var(--chat-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0) translateY(20px);
+            transform-origin: bottom left;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease, background var(--theme-transition), border-color var(--theme-transition);
+        }
+
+        .ai-chat-window.open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ai-chat-header {
+            background: var(--chat-header-bg);
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+            transition: background var(--theme-transition), border-color var(--theme-transition);
+        }
+
+        .ai-chat-header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .ai-chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .ai-header-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
+            transition: color var(--theme-transition);
+        }
+
+        .ai-header-info span {
+            font-size: 0.72rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            transition: color var(--theme-transition);
+        }
+
+        .ai-status-dot {
+            width: 8px; height: 8px;
+            background: #34d399;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 4px;
+            animation: status-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes status-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); }
+            50% { box-shadow: 0 0 0 4px rgba(52, 211, 153, 0); }
+        }
+
+        .ai-chat-close {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .ai-chat-close:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .model-selector {
+            display: flex;
+            gap: 6px;
+            padding: 0;
+        }
+
+        .model-option {
+            flex: 1;
+            padding: 6px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .model-option i {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        .model-option:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+        }
+
+        .model-option.active {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 2px 10px rgba(0, 173, 181, 0.25);
+        }
+
+        .model-option.active i {
+            opacity: 1;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scroll-behavior: smooth;
+        }
+
+        .ai-chat-messages::-webkit-scrollbar { width: 5px; }
+        .ai-chat-messages::-webkit-scrollbar-track { background: transparent; }
+        .ai-chat-messages::-webkit-scrollbar-thumb { background: var(--chat-scrollbar); border-radius: 10px; }
+
+        .ai-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            animation: msg-fade-in 0.3s ease;
+            word-wrap: break-word;
+        }
+
+        @keyframes msg-fade-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-msg.user {
+            align-self: flex-end;
+            background: var(--chat-user-bubble);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-msg.assistant {
+            align-self: flex-start;
+            background: var(--chat-ai-bubble);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            transition: background var(--theme-transition), color var(--theme-transition);
+        }
+
+        .ai-typing {
+            align-self: flex-start;
+            background: var(--chat-ai-bubble);
+            padding: 12px 18px;
+            border-radius: 14px;
+            border-bottom-left-radius: 4px;
+            display: flex;
+            gap: 5px;
+            transition: background var(--theme-transition);
+        }
+
+        .ai-typing span {
+            width: 7px; height: 7px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            animation: typing-bounce 1.2s ease-in-out infinite;
+        }
+
+        .ai-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .ai-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        .ai-chat-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: var(--chat-header-bg);
+            flex-shrink: 0;
+            transition: background var(--theme-transition), border-color var(--theme-transition);
+        }
+
+        .ai-chat-input {
+            flex: 1;
+            background: var(--chat-input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 10px 16px;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: background var(--theme-transition), border-color var(--theme-transition), color var(--theme-transition);
+        }
+
+        .ai-chat-input::placeholder { color: var(--text-secondary); }
+        .ai-chat-input:focus { border-color: var(--accent-primary); }
+
+        .ai-chat-send {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        }
+
+        .ai-chat-send:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 14px rgba(0, 173, 181, 0.35);
+        }
+
+        .ai-chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .ai-welcome {
+            text-align: center;
+            padding: 24px 16px;
+            color: var(--text-secondary);
+        }
+
+        .ai-welcome .ai-welcome-icon {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .ai-welcome p { font-size: 0.82rem; line-height: 1.6; }
+        .ai-welcome strong { color: var(--accent-primary); }
+
+        .ai-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 16px 12px;
+            justify-content: center;
+        }
+
+        .ai-suggestion-chip {
+            background: var(--chat-ai-bubble);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .ai-suggestion-chip:hover {
+            background: var(--accent-primary);
+            color: #fff;
+            border-color: var(--accent-primary);
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.6rem; }
+            .hero h2 { font-size: 1.6rem; }
+            .timeline::after { left: 30px; }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px;
+                padding-right: 30px;
+            }
+            .planet-1, .planet-2, .planet-3 { opacity: 0.5; }
+            .mode-badge { top: auto; bottom: 96px; right: 16px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero h2 { font-size: 1.4rem; }
+            section h2 { font-size: 2.2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+
+            .ai-chat-window {
+                bottom: 0; left: 0; right: 0;
+                width: 100%; max-width: 100%;
+                height: 70vh; max-height: 70vh;
+                border-radius: 18px 18px 0 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            .ai-chat-window.open { transform: scale(1) translateY(0); }
+            .ai-chat-trigger { bottom: 20px; left: 20px; width: 52px; height: 52px; }
+            .theme-toggle { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Space Background -->
+    <div class="space-background">
+        <div class="stars" id="stars"></div>
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div class="planet planet-3"></div>
+        <div class="galaxy"></div>
+        <div class="satellite"></div>
+        <div id="shooting-stars"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Mode Badge -->
+    <div class="mode-badge" id="modeBadge">
+        <i class="fas fa-circle"></i>
+        <span id="modeLabel">Night Mode</span>
+    </div>
+
+    <!-- AI Chat Trigger -->
+    <button class="ai-chat-trigger" id="aiChatTrigger" aria-label="Chat with AI Assistant">
+        <i class="fas fa-robot"></i>
+        <span class="notif-dot"></span>
+    </button>
+
+    <!-- AI Chat Window -->
+    <div class="ai-chat-window" id="aiChatWindow">
+        <div class="ai-chat-header">
+            <div class="ai-chat-header-top">
+                <div class="ai-chat-header-left">
+                    <div class="ai-avatar">✦</div>
+                    <div class="ai-header-info">
+                        <h4 id="aiName">Healer Alpha</h4>
+                        <span><span class="ai-status-dot"></span>AI Assistant &bull; Online</span>
+                    </div>
+                </div>
+                <button class="ai-chat-close" id="aiChatClose" aria-label="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <!-- Model Selector -->
+            <div class="model-selector" id="modelSelector">
+                <button class="model-option active" data-model="openrouter/healer-alpha" data-name="Healer Alpha">
+                    <i class="fas fa-bolt"></i> Healer Alpha
+                </button>
+                <button class="model-option" data-model="openrouter/auto" data-name="Auto">
+                    <i class="fas fa-magic"></i> Auto
+                </button>
+            </div>
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-welcome">
+                <span class="ai-welcome-icon">🤖</span>
+                <p>Hi there! I'm <strong>Healer Alpha</strong>, your AI assistant.<br>
+                Choose a model above, then ask me anything!</p>
+            </div>
+        </div>
+        <div class="ai-suggestions" id="aiSuggestions">
+            <button class="ai-suggestion-chip" data-msg="What projects are featured here?">What projects are here?</button>
+            <button class="ai-suggestion-chip" data-msg="Tell me about Ansh's skills">Ansh's skills?</button>
+            <button class="ai-suggestion-chip" data-msg="How can I contact Ansh?">Contact info?</button>
+            <button class="ai-suggestion-chip" data-msg="Hello! Who are you?">Say hello</button>
+        </div>
+        <div class="ai-chat-input-area">
+            <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Type a message..." autocomplete="off" />
+            <button class="ai-chat-send" id="aiChatSend" aria-label="Send message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Ansh Soni</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Full-Stack Developer &amp; AI Enthusiast</h1>
+                <h2>Exploring frontiers of tech -- like exploring the cosmos.</h2>
+                <p>Final-year B.Tech student specializing in Full-Stack Development and Python, with hands-on web-app experience and a passion for Artificial Intelligence and Machine Learning.</p>
+                <a href="#projects" class="btn">Explore My Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <h2>Space Missions</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Trading-Bot-on-Binance</h3>
+                    <div class="project-date">Feb 2026</div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">python-binance</span>
+                    </div>
+                    <p>Built a professional-grade trading dashboard using Python and Streamlit for real-time market data visualization and order execution. Integrated RESTful APIs to manage complex financial operations.</p>
+                    <div class="project-links">
+                        <a href="https://trading-bot-on-binance.up.railway.app/" class="btn">Live Demo</a>
+                        <a href="https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet" class="btn">GitHub Repo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Discord AI Chat Bot</h3>
+                    <div class="project-date">May 2025</div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">AI Integration</span>
+                        <span class="tech-tag">Async</span>
+                    </div>
+                    <p>Integrated Google Gemini to generate human-like replies in Discord DMs &amp; server channels. Used asynchronous logic to keep many concurrent chat streams responsive.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Ansh7473/discord-ai-integrated-chat" class="btn">GitHub Repo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>AI-Generalist</h3>
+                    <div class="project-date">Mar 2026</div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Mistral AI</span>
+                        <span class="tech-tag">Claude</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">PyMuPDF</span>
+                    </div>
+                    <p>Orchestrated multi-model inference with LangChain, enabling logical reasoning across heterogeneous data. Implemented multimodal extraction with PyMuPDF &amp; Unstructured.</p>
+                    <div class="project-links">
+                        <a href="https://ai-generalist.streamlit.app/" class="btn">Live Demo</a>
+                        <a href="https://github.com/Ansh7473/Ai-Generalist" class="btn">GitHub Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Arsenal</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>C++</li>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks &amp; Libraries</h3>
+                    <ul class="skill-list">
+                        <li>React.js</li>
+                        <li>Tailwind CSS</li>
+                        <li>NumPy</li>
+                        <li>Pandas</li>
+                        <li>PyTorch</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Developer Tools</h3>
+                    <ul class="skill-list">
+                        <li>Git &amp; GitHub</li>
+                        <li>VS Code</li>
+                        <li>Postman</li>
+                        <li>UV</li>
+                        <li>Docker</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="container">
+            <h2>Mission Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Bachelor of Technology (B.Tech)</h3>
+                    <div class="timeline-date">Jun 2022 -- Jun 2026</div>
+                    <p>Computer Science &amp; IT | CGPA 7.0</p>
+                    <p>Jawaharlal Nehru College of Technology (JNCT), Rewa | RGPV Affiliated</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>CODSOFT Virtual Internship</h3>
+                    <div class="timeline-date">2024</div>
+                    <p>Completed a responsive web-development program, sharpening modern front-end skills.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Project Lead (JNCT)</h3>
+                    <div class="timeline-date">2023 -- 2024</div>
+                    <p>Led a team of three on college technical assignments, managing GitHub code-review workflow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2>Mission Control</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Details</h3>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-map-marker-alt"></i><span>Rewa, Madhya Pradesh, India</span></li>
+                        <li><i class="fas fa-phone"></i><span>+91 62640 55720</span></li>
+                        <li><i class="fas fa-envelope"></i><span>anshsoni310@gmail.com</span></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/ansh-soni-4247993a4/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Ansh7473" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/Ansh7473/resume" target="_blank" rel="noopener noreferrer" aria-label="Resume"><i class="fas fa-file-pdf"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ansh Soni. All Rights Reserved. | Exploring the Digital Universe</p>
+        </div>
+    </footer>
+
+    <!-- ==============================================================
+         JavaScript — Calls /api/chat proxy (API key stays on server)
+    ============================================================== -->
+    <script>
+        /* ─── THEME ─── */
+        const THEME_KEY = 'ansh-portfolio-theme';
+
+        function isDaytime() {
+            return new Date().getHours() >= 6 && new Date().getHours() < 18;
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem(THEME_KEY, theme);
+            const label = document.getElementById('modeLabel');
+            if (label) label.textContent = theme === 'light' ? 'Day Mode' : 'Night Mode';
+        }
+
+        function initTheme() {
+            const saved = localStorage.getItem(THEME_KEY);
+            applyTheme(saved || (isDaytime() ? 'light' : 'dark'));
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'light' ? 'dark' : 'light');
+        }
+
+        /* ─── STARS ─── */
+        function createStars() {
+            const container = document.getElementById('stars');
+            if (!container) return;
+            container.innerHTML = '';
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 8 + 's';
+                star.style.animationDuration = (3 + Math.random() * 5) + 's';
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                container.appendChild(star);
+            }
+        }
+
+        /* ─── SHOOTING STARS ─── */
+        function createShootingStars() {
+            const container = document.getElementById('shooting-stars');
+            if (!container) return;
+            container.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('div');
+                star.classList.add('shooting-star');
+                const length = 100 + Math.random() * 200;
+                const angle = Math.random() * 360;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = length + 'px';
+                const dur = 1 + Math.random() * 2;
+                const delay = Math.random() * 15;
+                star.style.animation = 'shoot-' + i + ' ' + dur + 's ' + delay + 's infinite';
+
+                const style = document.createElement('style');
+                style.textContent =
+                    '@keyframes shoot-' + i + ' {' +
+                    '0%   { transform: rotate(' + angle + 'deg) translateX(0); opacity: 0; }' +
+                    '10%  { opacity: 1; }' +
+                    '90%  { opacity: 1; }' +
+                    '100% { transform: rotate(' + angle + 'deg) translateX(' + length + 'px); opacity: 0; }' +
+                    '}';
+                document.head.appendChild(style);
+                container.appendChild(star);
+            }
+        }
+
+        /* ─── PARALLAX ─── */
+        function handleMouseMove(e) {
+            const mx = (e.clientX - window.innerWidth / 2) / 50;
+            const my = (e.clientY - window.innerHeight / 2) / 50;
+            const p1 = document.querySelector('.planet-1');
+            const p2 = document.querySelector('.planet-2');
+            const p3 = document.querySelector('.planet-3');
+            const gal = document.querySelector('.galaxy');
+            if (p1) p1.style.transform = 'translate(' + mx * 0.7 + 'px,' + my * 0.7 + 'px) rotate(' + mx * 0.5 + 'deg)';
+            if (p2) p2.style.transform = 'translate(' + (-mx * 0.5) + 'px,' + (-my * 0.5) + 'px) rotate(' + (-mx * 0.3) + 'deg)';
+            if (p3) p3.style.transform = 'translate(' + mx * 0.3 + 'px,' + my * 0.3 + 'px) rotate(' + mx * 0.2 + 'deg)';
+            if (gal) gal.style.transform = 'translate(' + (-mx * 0.4) + 'px,' + (-my * 0.4) + 'px) rotate(' + mx * 0.1 + 'deg)';
+        }
+
+        /* ─── SMOOTH SCROLL ─── */
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                }
+            });
+        });
+
+        /* ═══════════════════════════════════════════════════════════════
+           AI CHAT WIDGET — Calls /api/chat proxy (secure)
+           NO API KEY IN THIS FILE
+           ═══════════════════════════════════════════════════════════════ */
+
+        var MODELS = {
+            'openrouter/healer-alpha': 'Healer Alpha',
+            'openrouter/auto': 'Auto'
+        };
+
+        var selectedModel = 'openrouter/healer-alpha';
+
+        var PORTFOLIO_CONTEXT =
+            'You are Healer Alpha, a warm, curious, and thoughtful AI assistant embedded in Ansh Soni\'s portfolio website.\n\n' +
+            'ABOUT ANSH SONI:\n' +
+            '- Final-year B.Tech student (CS & IT) at JNCT Rewa (RGPV), CGPA 7.0, graduating June 2026\n' +
+            '- Full-Stack Developer & AI Enthusiast based in Rewa, Madhya Pradesh, India\n' +
+            '- Contact: anshsoni310@gmail.com | Phone: +91 62640 55720\n' +
+            '- LinkedIn: https://www.linkedin.com/in/ansh-soni-4247993a4/\n' +
+            '- GitHub: https://github.com/Ansh7473\n\n' +
+            'PROJECTS:\n' +
+            '1. Trading-Bot-on-Binance (Feb 2026) -- Python, Streamlit, python-binance. Real-time futures trading dashboard.\n' +
+            '   Live: https://trading-bot-on-binance.up.railway.app/ | Repo: https://github.com/Ansh7473/Trading-Bot-on-Binance-Futures-Testnet\n\n' +
+            '2. Discord AI Chat Bot (May 2025) -- Python, Google Gemini, Async. AI-powered Discord chatbot.\n' +
+            '   Repo: https://github.com/Ansh7473/discord-ai-integrated-chat\n\n' +
+            '3. AI-Generalist (Mar 2026) -- Mistral AI, Claude, LangChain, PyMuPDF. Multi-model orchestration.\n' +
+            '   Live: https://ai-generalist.streamlit.app/ | Repo: https://github.com/Ansh7473/Ai-Generalist\n\n' +
+            'SKILLS: Python, JavaScript, C++, HTML/CSS, React.js, Tailwind CSS, NumPy, Pandas, PyTorch, Git, Docker\n\n' +
+            'Keep responses concise (2-4 sentences). Be warm and conversational. If you don\'t know something, say so honestly.';
+
+        var chatHistory = [];
+        var isSending = false;
+
+        var trigger     = document.getElementById('aiChatTrigger');
+        var chatWindow  = document.getElementById('aiChatWindow');
+        var closeBtn    = document.getElementById('aiChatClose');
+        var messagesEl  = document.getElementById('aiChatMessages');
+        var inputEl     = document.getElementById('aiChatInput');
+        var sendBtn     = document.getElementById('aiChatSend');
+        var suggestions = document.getElementById('aiSuggestions');
+        var aiNameEl    = document.getElementById('aiName');
+        var selector    = document.getElementById('modelSelector');
+
+        /* ── Model selector ── */
+        selector.addEventListener('click', function(e) {
+            var btn = e.target.closest('.model-option');
+            if (!btn) return;
+
+            selector.querySelectorAll('.model-option').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            selectedModel = btn.getAttribute('data-model');
+            aiNameEl.textContent = btn.getAttribute('data-name');
+        });
+
+        /* ── Open / Close ── */
+        function openChat() {
+            chatWindow.classList.add('open');
+            trigger.classList.add('hidden');
+            var dot = trigger.querySelector('.notif-dot');
+            if (dot) dot.style.display = 'none';
+            inputEl.focus();
+        }
+
+        function closeChat() {
+            chatWindow.classList.remove('open');
+            trigger.classList.remove('hidden');
+        }
+
+        trigger.addEventListener('click', openChat);
+        closeBtn.addEventListener('click', closeChat);
+
+        /* ── Typing indicator ── */
+        function showTyping() {
+            var div = document.createElement('div');
+            div.classList.add('ai-typing');
+            div.id = 'aiTypingIndicator';
+            div.innerHTML = '<span></span><span></span><span></span>';
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function hideTyping() {
+            var el = document.getElementById('aiTypingIndicator');
+            if (el) el.remove();
+        }
+
+        /* ── Add message ── */
+        function addMessage(role, content) {
+            var div = document.createElement('div');
+            div.classList.add('ai-msg', role);
+            div.textContent = content;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        /* ── Send message via /api/chat proxy ── */
+        async function sendMessage(text) {
+            if (!text.trim() || isSending) return;
+
+            if (suggestions) suggestions.style.display = 'none';
+
+            addMessage('user', text.trim());
+            inputEl.value = '';
+
+            chatHistory.push({ role: 'user', content: text.trim() });
+
+            showTyping();
+            isSending = true;
+            sendBtn.disabled = true;
+
+            try {
+                var response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: selectedModel,
+                        messages: [
+                            { role: 'system', content: PORTFOLIO_CONTEXT }
+                        ].concat(chatHistory),
+                        max_tokens: 500,
+                        temperature: 0.7
+                    })
+                });
+
+                if (!response.ok) {
+                    var errText = await response.text();
+                    throw new Error('API error ' + response.status + ': ' + errText);
+                }
+
+                var data = await response.json();
+                var reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content)
+                    || 'Sorry, I could not generate a response.';
+
+                hideTyping();
+                addMessage('assistant', reply);
+                chatHistory.push({ role: 'assistant', content: reply });
+
+            } catch (err) {
+                console.error('Chat error:', err);
+                hideTyping();
+                addMessage('assistant', 'Sorry, I encountered an error. Please try again later.');
+                chatHistory.push({ role: 'assistant', content: 'Error' });
+            } finally {
+                isSending = false;
+                sendBtn.disabled = false;
+                inputEl.focus();
+            }
+        }
+
+        sendBtn.addEventListener('click', function() { sendMessage(inputEl.value); });
+
+        inputEl.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage(inputEl.value);
+            }
+        });
+
+        document.querySelectorAll('.ai-suggestion-chip').forEach(function(chip) {
+            chip.addEventListener('click', function() {
+                var msg = this.getAttribute('data-msg');
+                if (msg) sendMessage(msg);
+            });
+        });
+
+        /* ─── INIT ─── */
+        document.addEventListener('DOMContentLoaded', function() {
+            initTheme();
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            createStars();
+            createShootingStars();
+            document.addEventListener('mousemove', handleMouseMove);
+            setInterval(function() { createShootingStars(); }, 5000);
+        });
+    </script>
+</body>
+</html>
