@@ -31,7 +31,7 @@ export default async function handler(req, res) {
                 'X-Title': 'Ansh Soni Portfolio'
             },
             body: JSON.stringify({
-                model: 'deepseek/deepseek-r1-0528:free',
+                model: 'openrouter/free',
                 messages,
                 max_tokens,
                 temperature
