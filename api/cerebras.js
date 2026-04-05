@@ -19,7 +19,7 @@ export default async function handler(req, res) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: 'llama3.1-8b', 
+                    model: 'qwen-3-235b-a22b-instruct-2507', 
                     messages: messages
                 })
             });
