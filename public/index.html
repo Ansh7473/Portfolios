@@ -1941,14 +1941,14 @@
                     provider: currentProvider
                 };
 
-                // The user requested to use the direct endpoint to avoid local server proxy 402 payment limits
+                // We must use the direct external endpoint as Cerebras blocks Vercel backend IPs (402 Payment Required)
                 if (currentProvider === 'cerebras') {
                     fetchUrl = 'https://api.cerebras.ai/v1/chat/completions';
                     
-                    // We pull from the environment variable the user configures in Vercel
-                    // Note: In vanilla HTML, this requires a build tool/injector (like Vite or Webpack)
-                    // If no build step exists, they must inject the window variable or fallback to string replacement.
-                    let cerebrasKey = typeof process !== 'undefined' && process.env.CEREBRAS_API_KEY ? process.env.CEREBRAS_API_KEY : (window.CEREBRAS_API_KEY || '');
+                    // Fetch the API key from our backend configuration so it is NOT hardcoded in GitHub
+                    const configRes = await fetch('/api/config');
+                    const configData = await configRes.json();
+                    let cerebrasKey = configData.cerebrasKey;
                     
                     fetchHeaders['Authorization'] = 'Bearer ' + cerebrasKey;
                     fetchBody = {
