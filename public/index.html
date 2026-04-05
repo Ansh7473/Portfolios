@@ -1707,7 +1707,7 @@
     </footer>
 
     <!-- ==============================================================
-         JavaScript — Calls /api/chat proxy (API key stays on server)
+         JavaScript — Direct API calls to Cerebras & OpenRouter
     ============================================================== -->
     <script>
         /* ─── THEME ─── */
@@ -1810,8 +1810,7 @@
         });
 
         /* ═══════════════════════════════════════════════════════════════
-           AI CHAT WIDGET — Calls /api/chat proxy (secure)
-           NO API KEY IN THIS FILE
+           AI CHAT WIDGET — Direct calls to Cerebras & OpenRouter APIs
            ═══════════════════════════════════════════════════════════════ */
 
         var PORTFOLIO_CONTEXT =
@@ -1918,7 +1917,24 @@
         }
 
 
-        /* ── Send message via /api/chat proxy ── */
+        /* ═══════════════════════════════════════════════════════════════
+           SECURE API CALLS — Each provider has its own serverless route
+           Keys stay in Vercel Environment Variables, never in the browser
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ── Provider Config (NO keys here — server handles auth) ── */
+        var PROVIDER_CONFIG = {
+            cerebras: {
+                endpoint: '/api/cerebras',
+                name: 'Cerebras Llama 3.1'
+            },
+            openrouter: {
+                endpoint: '/api/openrouter',
+                name: 'OpenRouter DeepSeek'
+            }
+        };
+
+        /* ── Send message via secure serverless routes ── */
         async function sendMessage(text) {
             if (!text.trim() || isSending) return;
 
@@ -1929,66 +1945,57 @@
 
             chatHistory.push({ role: 'user', content: text.trim() });
 
-            showTyping();
+            var cfg = PROVIDER_CONFIG[currentProvider];
+            showTyping('CONNECTING TO ' + cfg.name.toUpperCase() + '...');
             isSending = true;
             sendBtn.disabled = true;
 
             try {
-                let fetchUrl = '/api/chat';
-                let fetchHeaders = { 'Content-Type': 'application/json' };
-                let fetchBody = {
-                    messages: [{ role: 'system', content: PORTFOLIO_CONTEXT }].concat(chatHistory),
-                    provider: currentProvider
-                };
-
-                // We must use the direct external endpoint as Cerebras blocks Vercel backend IPs (402 Payment Required)
-                if (currentProvider === 'cerebras') {
-                    fetchUrl = 'https://api.cerebras.ai/v1/chat/completions';
-                    
-                    // Fetch the API key from our backend configuration so it is NOT hardcoded in GitHub
-                    const configRes = await fetch('/api/config');
-                    const configData = await configRes.json();
-                    let cerebrasKey = configData.cerebrasKey;
-                    
-                    fetchHeaders['Authorization'] = 'Bearer ' + cerebrasKey;
-                    fetchBody = {
-                        model: 'llama3.1-8b',
-                        messages: [{ role: 'system', content: PORTFOLIO_CONTEXT }].concat(chatHistory)
-                    };
-                }
-
-                var response = await fetch(fetchUrl, {
+                var response = await fetch(cfg.endpoint, {
                     method: 'POST',
-                    headers: fetchHeaders,
-                    body: JSON.stringify(fetchBody)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: [{ role: 'system', content: PORTFOLIO_CONTEXT }].concat(chatHistory),
+                        max_tokens: 512,
+                        temperature: 0.7
+                    })
                 });
 
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    let errorData;
+                    var errorText = await response.text();
+                    var errorData;
                     try { errorData = JSON.parse(errorText); } catch (e) { }
-                    throw new Error((errorData && errorData.error) || errorText || `API_ERROR_${response.status}`);
+                    var errMsg = '';
+                    if (errorData && errorData.error) {
+                        errMsg = typeof errorData.error === 'string' ? errorData.error : (errorData.error.message || JSON.stringify(errorData.error));
+                    } else {
+                        errMsg = errorText || 'API_ERROR_' + response.status;
+                    }
+                    throw new Error('[' + currentProvider.toUpperCase() + '] ' + errMsg);
                 }
 
                 var data = await response.json();
                 var reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content)
                     || 'NO_DATA_RECEIVED';
 
+                /* OpenRouter DeepSeek R1 sometimes wraps in <think>...</think> tags — strip them */
+                reply = reply.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+                if (!reply) reply = 'I received a response but it was empty after processing. Please try again.';
+
                 hideTyping();
                 addMessage('assistant', reply);
                 chatHistory.push({ role: 'assistant', content: reply });
 
             } catch (err) {
-                console.error('Chat error:', err);
+                console.error('[' + currentProvider + '] Chat error:', err);
                 hideTyping();
-                addMessage('assistant', `FATAL_ERROR: ${err.message}`, 'error');
+                addMessage('assistant', 'COMMS_ERROR [' + currentProvider.toUpperCase() + ']: ' + err.message, 'error');
                 chatHistory.push({ role: 'assistant', content: 'SYSTEM_ERROR' });
             } finally {
                 isSending = false;
                 sendBtn.disabled = false;
                 inputEl.focus();
             }
-
         }
 
         sendBtn.addEventListener('click', function () { sendMessage(inputEl.value); });
